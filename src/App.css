@@ -1,0 +1,244 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.galaxy {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.jpg') repeat;
+  opacity: 0.08;
+  animation: twinkle 100s linear infinite;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.input-group input,
+.priority-select {
+  padding: 10px;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  outline: none;
+  background-color: #ffffff;
+  color: #333;
+  transition: 0.3s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-group input:focus,
+.priority-select:focus {
+  border-color: #218838;
+  box-shadow: 0 0 8px rgba(33, 136, 56, 0.4);
+}
+
+.input-group button {
+  padding: 10px 16px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-group button:hover {
+  background-color: #218838;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 6px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-content {
+  font-size: 1rem;
+  color: #fff;
+  flex-grow: 1;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.done .task-content {
+  text-decoration: line-through;
+  color: #9f7cff;
+  font-style: italic;
+}
+
+.priority {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.priority.low {
+  background-color: #00c851;
+  color: #fff;
+}
+
+.priority.medium {
+  background-color: #ffbb33;
+  color: #000;
+}
+
+.priority.high {
+  background-color: #ff4444;
+  color: #fff;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.actions button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:first-child {
+  background-color: #007bff;
+}
+
+.actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.actions button:last-child {
+  background-color: #dc3545;
+}
+
+.actions button:last-child:hover {
+  background-color: #c82333;
+}
+
+.no-tasks {
+  color: #ccc;
+  font-style: italic;
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.edit-input {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .app {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .task-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-content {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+.counter {
+  color: #ffffff;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}

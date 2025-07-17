@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.galaxy {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.galaxy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.jpg') repeat;
+  opacity: 0.08;
+  animation: twinkle 100s linear infinite;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.input-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+input {
+  padding: 10px;
+  width: 70%;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s ease;
+  background-color: #ffffff;
+  color: #333;
+}
+
+input:focus {
+  border-color: #218838;
+  box-shadow: 0 0 8px rgba(33, 136, 56, 0.5);
+}
+
+button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 1px 5px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.task-content {
+  width: 100%;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
+
+.task-list li.done .task-content {
+  text-decoration: line-through;
+  color: #7700ff;
+  font-style: italic;
+}
+
+.actions {
+  align-self: flex-end;
+  display: flex;
+}
+
+.actions button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:first-child {
+  background-color: #007bff;
+}
+
+.actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.actions button:last-child {
+  background-color: #dc3545;
+}
+
+.actions button:last-child:hover {
+  background-color: #dc3546b4;
+}
+
+.no-tasks {
+  color: #ccc;
+  font-style: italic;
+}
+/* search bar */
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #5ce1e6;
+  border-radius: 8px;
+  background-color: #fff;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* progress bar */
+.progress-bar {
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  transition: width 0.3s ease-in-out;
+}
+
+/* simple fade‑in animation */
+.fade {
+  animation: fadeIn 0.3s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);  }
+}
+
+/* optional: highlight drop target */
+li.drag-target {
+  outline: 2px dashed #5ce1e6;
+}
