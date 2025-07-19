@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 export default function App() {
-  // ───────────────── state ─────────────────
+
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState("");
   const [priority, setPriority] = useState("medium");
@@ -10,10 +10,9 @@ export default function App() {
   const [editValue, setEditValue] = useState("");
   const [search, setSearch] = useState("");
 
-  // remember which task we’re dragging
+  
   const dragId = useRef(null);
 
-  // ──────────────── localStorage sync ────────────────
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("tasks"));
     if (stored) setTasks(stored);
@@ -23,15 +22,13 @@ export default function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // ──────────────── helpers ────────────────
   const generateId = () => {
     if (typeof crypto !== "undefined" && crypto.randomUUID) {
       return crypto.randomUUID();
     }
-    return Date.now().toString(); // fallback for older browsers
+    return Date.now().toString();
   };
 
-  // ──────────────── CRUD handlers ────────────────
   const addTask = () => {
     if (!taskInput.trim()) return;
     setTasks([
@@ -59,13 +56,12 @@ export default function App() {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
-  // ──────────────── drag‑and‑drop ────────────────
   const handleDragStart = (id) => () => {
     dragId.current = id;
   };
 
   const handleDragOver = (e) => {
-    e.preventDefault(); // allow drop
+    e.preventDefault(); 
   };
 
   const handleDrop = (targetId) => () => {
@@ -82,7 +78,6 @@ export default function App() {
     setTasks(reordered);
   };
 
-  // ──────────────── derived values ────────────────
   const completedCount = tasks.filter((t) => t.completed).length;
   const uncompletedCount = tasks.length - completedCount;
   const progress = tasks.length ? (completedCount / tasks.length) * 100 : 0;
@@ -91,19 +86,17 @@ export default function App() {
     t.text.toLowerCase().includes(search.toLowerCase())
   );
 
-  // sort by priority high → low after filtering
   const order = { high: 0, medium: 1, low: 2 };
   const sortedTasks = [...filteredTasks].sort(
     (a, b) => order[a.priority] - order[b.priority]
   );
 
-  // ──────────────── render ────────────────
   return (
     <div className="galaxy">
       <div className="app">
         <h2>🪐 To‑Do List</h2>
 
-        {/* search bar */}
+        
         <input
           className="search-input"
           type="text"
@@ -112,7 +105,7 @@ export default function App() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {/* add‑task form */}
+      
         <div className="input-group">
           <input
             type="text"
@@ -135,12 +128,12 @@ export default function App() {
           <button onClick={addTask}>Add</button>
         </div>
 
-        {/* progress bar */}
+        
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progress}%` }} />
         </div>
 
-        {/* task list */}
+       
         {sortedTasks.length === 0 ? (
           <p className="no-tasks">No tasks match your search.</p>
         ) : (
@@ -199,7 +192,7 @@ export default function App() {
           </ul>
         )}
 
-        {/* counters */}
+      
         <div className="counter">
           Completed: {completedCount} | Uncompleted: {uncompletedCount}
         </div>
